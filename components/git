@@ -2,3 +2,4 @@
 
 git config --global user.email "johan@egneblad.se"
 git config --global user.name "Johan Egneblad"
+git config --global push.default simple
