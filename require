@@ -1,0 +1,8 @@
+#!/bin/bash
+
+dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
+
+for COMPONENT in $@; do
+    /bin/bash components/$COMPONENT
+    echo "Done setting up $COMPONENT."
+done

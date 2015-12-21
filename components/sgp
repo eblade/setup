@@ -1,5 +1,7 @@
 #!/bin/bash
 
+require git
+
 HERE=$(pwd)
 
 mkdir -p $HOME/git

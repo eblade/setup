@@ -1,0 +1,13 @@
+#!/bin/bash
+
+dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
+
+PROFILE=${1:-default}
+
+echo "Setting up profile $PROFILE..."
+
+for component in $(cat profiles/$PROFILE); do
+    ./require $component
+done
+
+echo "Done"

@@ -11,3 +11,5 @@ for f in /home/jne/.bashrc.d/*; do
 done
 EOF
 fi
+
+cp --force files/self.sh $HOME/.bashrc.d/self.sh

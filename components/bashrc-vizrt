@@ -1,3 +1,5 @@
 #!/bin/bash
 
+require bashrc
+
 cp --force $PWD/files/bashrc-vizrt.sh $HOME/.bashrc.d/vizrt.sh

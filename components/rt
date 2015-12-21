@@ -1,5 +1,7 @@
 #!/bin/bash
 
+require bzr-ardendo
+
 HERE=$(pwd)
 
 cd

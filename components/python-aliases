@@ -1,3 +1,5 @@
 #!/bin/bash
 
+require bashrc
+
 cp --force files/python-aliases.sh $HOME/.bashrc.d/python-aliases.sh
