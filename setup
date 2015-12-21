@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PROFILE=$1
+
+echo "Profile is $PROFILE"
+
+for component in $(cat profiles/$PROFILE); do
+    echo "Installing $component..."
+    /bin/bash components/$component
+done
+
+echo "Done"

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ln --force $PWD/files/.vimrc $HOME/.vimrc
+cp --force $PWD/files/dot-vimrc $HOME/.vimrc

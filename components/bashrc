@@ -1,0 +1,13 @@
+#!/bin/bash
+
+mkdir -p $HOME/.bashrc.d
+
+if ! grep --quiet "Source custom scripts" "$HOME/.bashrc"; then
+cat >> $HOME/.bashrc <<EOF
+
+# Source custom scripts
+for f in /home/jne/.bashrc.d/*; do
+   . "\$f"
+done
+EOF
+fi

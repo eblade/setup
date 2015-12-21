@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cp --force $PWD/files/bashrc-vizrt.sh $HOME/.bashrc.d/vizrt.sh
