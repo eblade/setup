@@ -1,0 +1,21 @@
+#!/bin/bash
+
+require bzr-ardendo
+
+echo "Installing paramiko via pip"
+sudo pip install paramiko
+
+HERE=$(pwd)
+
+cd
+mkdir -p bzr
+cd bzr
+if [[ ! -d python-tools ]]; then
+    mkdir python-tools
+    cd python-tools
+    bzr co main://mam-int/peripheral/python-tools/trunk
+fi
+
+cd
+
+cp --force $HERE/files/python-tools.sh $HOME/.bashrc.d/python-tools.sh

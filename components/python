@@ -2,4 +2,7 @@
 
 require bashrc
 
+echo "Upgrading pip..."
+pip install --upgrade pip
+
 cp --force files/python-aliases.sh $HOME/.bashrc.d/python-aliases.sh
