@@ -1,0 +1,21 @@
+#!/bin/bash
+
+HERE=$(pwd)
+
+cd
+mkdir -p bzr
+cd bzr
+if [[ ! -d rt ]]; then
+    mkdir rt
+    cd rt
+    bzr co main://jne/rt/trunk
+fi
+
+cd
+
+if [[ ! -d time_reports ]]; then
+    mkdir time_reports
+    cp $HOME/bzr/rt/trunk/config/* time_reports
+fi
+
+cp --force $HERE/files/rt.sh $HOME/.bashrc.d/rt.sh
