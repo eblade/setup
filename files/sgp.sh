@@ -1,5 +1,5 @@
 #!/bin/bash
 
 function pass {
-    PYTHONPATH="$HOME/git/supergenpass/core" python $HOME/git/supergenpass/core/sgp -q $1 | xclip -selection clipboard
+    PYTHONPATH="$HOME/git/supergenpass/core" python2 $HOME/git/supergenpass/core/sgp -q $1 | xclip -selection clipboard
 }

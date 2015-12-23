@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo apt install git vim bzr xclip python-lxml python-gevent tree
