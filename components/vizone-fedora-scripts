@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [[ $EUID -ne 0 ]]; then
+    echo "Root required"
+    exit 1
+fi
+
+export VMEMGR="/opt/ardendo-install/vme"
+export HOSTNAME="$(hostname -s)"
+export DOMAIN="$(hostname -d)"
+if [[ -z "$DOMAIN" ]]; then
+    export DOMAIN="$HOSTNAME"
+fi
+export IP="$(hostname -i)"
+
+/opt/ardendo-install/vme/scripts/redhat/bootstrap
+/opt/ardendo-install/vme/scripts/redhat/fix-skel
+/opt/ardendo-install/vme/scripts/redhat/generate-ssh-keys
+
+/opt/ardendo-install/vme/scripts/redhat/setup
+/opt/ardendo-install/vme/scripts/redhat/setup-ntp-multicast-client
+/opt/ardendo-install/vme/scripts/redhat/users
+/opt/ardendo-install/vme/scripts/gensslcert
+
+/opt/ardendo-install/vme/scripts/redhat/post-demctl /opt/demctl/etc/demctl.conf

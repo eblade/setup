@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ $EUID -ne 0 ]]; then
+    echo "Root required"
+    exit 1
+fi
+
+VMEMGR="/opt/ardendo-install/vme"
+HOSTNAME="$(hostname -s)"
+
+sed -e s/__HOSTNAME__/$HOSTNAME/g $VMEMGR/conf/demctl.conf > /opt/demctl/etc/demctl.conf

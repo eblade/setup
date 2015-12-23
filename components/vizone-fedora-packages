@@ -1,0 +1,5 @@
+#!/bin/bash
+
+require fedora-packages
+
+sudo dnf install libgcc perl xinetd patch perl-XML-Parser perl-Net-Domain-TLD perl-Digest-MD5 perl-Net-DNS-Resolver-Programmable cpan ksh perl-List-MoreUtils perl-Readonly perl-Crypt-Blowfish perl-Crypt-CBC perl-Config-IniFiles
