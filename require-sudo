@@ -1,0 +1,10 @@
+#!/bin/bash
+
+dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
+cd $dir
+
+for COMPONENT in $@; do
+    echo "Component $COMPONENT requires sudo."
+    sudo /bin/bash components/$COMPONENT
+    echo "Done setting up $COMPONENT."
+done
