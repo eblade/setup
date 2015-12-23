@@ -6,7 +6,8 @@ if ! grep --quiet "Source custom scripts" "$HOME/.bashrc"; then
 cat >> $HOME/.bashrc <<EOF
 
 # Source custom scripts
-for f in /home/jne/.bashrc.d/*; do
+export SETUP_PATH="$PWD"
+for f in \$HOME/.bashrc.d/*; do
    . "\$f"
 done
 EOF

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-SETUP_PATH="$HOME/git/setup"
-
 PATH="$SETUP_PATH:$PATH"
 
 function _profComplete {
@@ -17,3 +15,4 @@ function _requireComplete {
 }
 
 complete -F _requireComplete require
+complete -F _requireComplete require-sudo
