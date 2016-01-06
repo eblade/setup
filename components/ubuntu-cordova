@@ -3,5 +3,3 @@
 require ubuntu-nodejs
 
 sudo npm install -g cordova
-
-echo "You might need to fix the env in the cordova executable, node -> nodejs"

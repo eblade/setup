@@ -1,3 +1,8 @@
 #!/bin/bash
 
 sudo apt install nodejs npm
+
+# Some npm packages think that "nodejs" is called just "node"
+if [[ ! -e /usr/bin/node ]]; then
+    sudo ln -s /usr/bin/nodejs /usr/bin/node
+fi
