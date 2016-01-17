@@ -1,2 +1,4 @@
 git
 bash-git-prompt
+git-remote-bzr
+git-remote-hg

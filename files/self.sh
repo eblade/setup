@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH="$SETUP_PATH:$PATH"
+PATH="$SETUP_PATH:$HOME/bin:$PATH"
 
 function _profComplete {
     local cur=${COMP_WORDS[COMP_CWORD]}

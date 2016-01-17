@@ -1,0 +1,7 @@
+#!/bin/bash
+
+require bashrc
+require git
+
+wget -O $HOME/bin/git-remote-hg https://raw.github.com/felipec/git-remote-hg/master/git-remote-hg
+chmod +x $HOME/bin/git-remote-hg
