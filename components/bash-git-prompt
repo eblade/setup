@@ -1,0 +1,20 @@
+#!/bin/bash
+
+require bashrc
+require git
+
+HERE="$(pwd)"
+
+mkdir -p ~/git
+cd ~/git
+
+if [[ -d bash-git-prompt ]]; then
+    cd bash-git-prompt
+    git pull
+else
+    git clone https://github.com/magicmonty/bash-git-prompt.git
+    cd bash-git-prompt
+fi
+
+cd "$HERE"
+cp --force files/bash-git-prompt.sh "$HOME/.bashrc.d/bash-git-prompt.sh"
