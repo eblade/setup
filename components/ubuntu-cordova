@@ -3,3 +3,16 @@
 require ubuntu-nodejs
 
 sudo npm install -g cordova
+sudo npm install -g cordova-ubuntu
+sudo npm install -g cordova-android
+sudo npm install -g shelljs
+sudo npm install -g q
+
+LOCAL_USER="$USER"
+LOCAL_HOME="$HOME"
+if [[ -e $HOME/.npm ]]; then
+    echo "Fixing permissions for ~/.npm"
+    sudo chown -R $LOCAL_USER:$LOCAL_USER $LOCAL_HOME/.npm
+fi
+
+sudo apt install click cmake libicu-dev pkg-config devscripts qtbase5-dev qtchooser qtdeclarative5-dev qtfeedback5-dev qtlocation5-dev qtmultimedia5-dev qtpim5-dev libqt5sensors5-dev qtsystems5-dev
