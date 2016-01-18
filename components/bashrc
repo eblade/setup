@@ -1,6 +1,7 @@
 #!/bin/bash
 
 mkdir -p $HOME/.bashrc.d
+mkdir -p $HOME/bin
 
 if ! grep --quiet "Source custom scripts" "$HOME/.bashrc"; then
 cat >> $HOME/.bashrc <<EOF

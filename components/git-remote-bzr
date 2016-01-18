@@ -1,0 +1,8 @@
+#!/bin/bash
+
+require bashrc
+require git
+
+wget -O $HOME/bin/git-remote-bzr https://raw.github.com/felipec/git-remote-bzr/master/git-remote-bzr
+chmod +x $HOME/bin/git-remote-bzr
+
