@@ -3,7 +3,7 @@
 export ARSVNUSER=jne
 export ARBZRUSER=jne
 
-export ONEUSER=admin:admin
-export ONEHOST=onedev140.se.vizrt.internal
+export ONEUSER=user:user
+export ONEHOST=one-dev-sles
 
 export RT_ROOT=/home/jne/time_reports
