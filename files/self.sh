@@ -16,3 +16,11 @@ function _requireComplete {
 
 complete -F _requireComplete require
 complete -F _requireComplete require-sudo
+
+function _checkComplete {
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    COMPREPLY=( $(compgen -W "$(ls $SETUP_PATH/checks/)" -- $cur) )
+}
+
+complete -F _checkComplete check
+

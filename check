@@ -1,0 +1,10 @@
+#!/bin/bash
+
+dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
+cd $dir
+
+for CHECK in $@; do
+    /bin/bash checks/$CHECK
+    echo "Done checking $CHECK."
+done
+
