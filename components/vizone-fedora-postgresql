@@ -1,0 +1,31 @@
+#!/bin/bash
+
+require fedora-packages
+
+sudo dnf install postgresql-server postgresql-contrib perl-DBD-Pg
+sudo systemctl enable postgresql
+sudo /usr/bin/postgresql-setup --initdb
+sudo systemctl start postgresql
+
+# su - postgres
+# createuser -W omeusr1
+# createdb ome1 --owner=omeusr1
+
+# /var/lib/pgsql/data/pg_hba.conf
+
+# ident -> md5
+# then restart postgresql
+
+# /var/ardendo/conf/ardome/ardome.ini
+
+#[Database]
+#type=pg
+#name=ome1
+#host=localhost
+#username=omeusr1
+#password=aidem630
+#
+#[REST Server 1]
+#baseuri=http://jne/api/
+#username=admin
+#password=admin

@@ -2,4 +2,65 @@
 
 require fedora-packages
 
-sudo dnf install libgcc perl xinetd patch perl-XML-Parser perl-Net-Domain-TLD perl-Digest-MD5 perl-Net-DNS-Resolver-Programmable cpan ksh perl-List-MoreUtils perl-Readonly perl-Crypt-Blowfish perl-Crypt-CBC perl-Config-IniFiles
+# Standard packages
+sudo dnf install\
+    libgcc\
+    perl\
+    xinetd\
+    patch\
+    cpan\
+    ksh\
+    mod_perl\
+    compat-libstdc++-33-3.2.3-68.13.x86_64\
+    pcre\
+    openssl\
+    pwgen\
+    js\
+    js-devel\
+    mozjs17-devel\
+    perl-XML-Parser\
+    perl-Net-Domain-TLD\
+    perl-Digest-MD5\
+    perl-Net-DNS-Resolver-Programmable\
+    perl-List-MoreUtils\
+    perl-Readonly\
+    perl-Crypt-Blowfish\
+    perl-Crypt-CBC\
+    perl-Config-IniFiles\
+    perl-Clone\
+    perl-DBI\
+    perl-Data-UUID\
+    perl-Class-Data-Inheritable\
+    perl-Devel-StackTrace\
+    perl-Cache-Memcached\
+    perl-XML-LibXML\
+    perl-YAML\
+    perl-JSON\
+    perl-DateTime\
+    perl-Digest-SHA1\
+    perl-Apache-DBI\
+    perl-Net-SSH2\
+    perl-File-Slurp\
+    # END OF COMMAND
+
+# Provided as RPM
+RPM=/root/vme/rpm
+sudo dnf install\
+    $RPM/perl-Net-Stomp-0.38_99-beta12-1.noarch.rpm\
+    $RPM/perl-JavaScript-1.16-11.x86_64.rpm\
+    # END OF COMMAND
+
+# Provided via cpan
+cpan Log::Log4perl
+cpan Cache::Memcached::Fast
+cpan Cache::Memcached::Managed
+cpan Class::Accessor::Fast
+cpan ExtUtils::XSBuilder 
+cpan Apache::Test
+cpan Apache2::Request # does not works
+cpan Test::Exception
+export JS_INC=/usr/include/js:/usr/include/nspr4
+cpan JavaScript  # fails because reasons
+
+# Provided via "setup/files"
+cp files/libpcre.so.0 /usr/lib64/libpcre.so.0  # required by tengine

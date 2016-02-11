@@ -49,3 +49,9 @@ monkey install /root/vme/installer/*.apa
 monkey install /root/vme/packages/*.apa
 monkey install /root/vme/packages/rhel6/*.apa
 monkey apply
+
+# More:
+# Add this to /opt/ardendo-install/vme/env
+# if [ -d /usr/lib/perl5/site_perl/5.10.1 ]; then
+#    export PERL5LIB=$PERL5LIB:/usr/lib/perl5/site_perl/5.10.1
+# fi
