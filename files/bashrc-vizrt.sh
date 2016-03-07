@@ -7,3 +7,4 @@ export ONEUSER=user:user
 export ONEHOST=one-dev-sles
 
 export RT_ROOT=/home/jne/time_reports
+export PERL5LIB=/opt/ardome/lib/perl:$PERL5LIB
