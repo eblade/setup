@@ -1,0 +1,5 @@
+#!/bin/bash
+
+require bashrc
+
+cp --force files/fedora.sh $HOME/.bashrc.d/fedora.sh
