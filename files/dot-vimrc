@@ -1,17 +1,26 @@
 syntax on
 
+" The only correct indention settings
 set ts=4 sw=4 et ai
+
+" Status line
+set statusline=%<%n\ %f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+set laststatus=2
+
+" Shortcut for splitting buffers into tabs
 map <F2> :tab ball<CR>
 
+" Shortcuts for navigating between buffers
 nmap <A-PageUp> :prev<CR>
 nmap <A-PageDown> :next<CR>
-nmap <Leader>b :buffers<CR>
 nmap <Leader>t :TlistToggle<CR>
+nmap <Leader><Return> :BufExplorer<CR>
 
+" Fair light colors
 autocmd colorscheme * highlight ColorColumn ctermbg=7 guibg='#cccccc'
 colorscheme default
 
-set modeline
+set modelines=1
 "set autochdir
 
 " Toggle cursor tracking with \c

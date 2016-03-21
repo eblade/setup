@@ -15,3 +15,14 @@ if [ ! -e "plugin/taglist.vim" ]; then
 else
     echo "Taglist plugin already installed."
 fi
+
+
+if [ ! -e "plugin/bufexplorer.vim" ]; then
+    ZIPFILE="bufexplorer-7.4.6.zip"
+    wget --output-document="$ZIPFILE" "http://www.vim.org/scripts/download_script.php?src_id=22601"
+    unzip "$ZIPFILE"
+    vim -c "helptags doc/" -c "q"
+    rm -f $ZIPFILE
+else
+    echo "BufExplorer plugin already installed."
+fi
