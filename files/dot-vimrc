@@ -12,6 +12,7 @@ colorscheme default
 
 set modeline
 "set autochdir
+set hlsearch
 
 " Toggle cursor tracking with \c
 :hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
