@@ -1,3 +1,17 @@
 #!/bin/bash
 
+echo "Copying .vimrc file to $HOME."
 cp --force $PWD/files/dot-vimrc $HOME/.vimrc
+
+cd "$HOME/.vim"
+mkdir -p plugin
+
+if [ ! -e "plugin/taglist.vim" ]; then
+    ZIPFILE="taglist_46.zip"
+    wget --output-document="$ZIPFILE" "http://vim.sourceforge.net/scripts/download_script.php?src_id=19574"
+    unzip "$ZIPFILE"
+    vim -c "helptags doc/" -c "q"
+    rm -f $ZIPFILE
+else
+    echo "Taglist plugin already installed."
+fi

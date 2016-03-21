@@ -6,6 +6,7 @@ map <F2> :tab ball<CR>
 nmap <A-PageUp> :prev<CR>
 nmap <A-PageDown> :next<CR>
 nmap <Leader>b :buffers<CR>
+nmap <Leader>t :TlistToggle<CR>
 
 autocmd colorscheme * highlight ColorColumn ctermbg=7 guibg='#cccccc'
 colorscheme default
