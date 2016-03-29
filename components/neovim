@@ -1,0 +1,38 @@
+#!/bin/bash
+
+require bashrc
+require git
+require libtool
+
+HERE=$(pwd)
+
+mkdir -p $HOME/git
+cd $HOME/git
+if [[ ! -d neovim ]]; then
+    git clone https://github.com/neovim/neovim.git
+fi
+if [[ ! -d neovim/build ]]; then
+    cd neovim
+    make
+fi
+
+mkdir -p $HOME/.config/nvim
+
+cd $HERE
+require vimrc
+#cp $HERE/files/neovim.sh $HOME/.bashrc.d/neovim.sh
+cp -f $HOME/.vimrc $HOME/.config/nvim/init.vim
+cp -rf $HOME/.vim/* $HOME/.config/nvim/
+
+cat >> $HOME/.config/nvim/init.vim <<EOF
+" Inserted especially for neovim by setup
+
+:tnoremap <A-h> <C-\><C-n><C-w>h
+:tnoremap <A-j> <C-\><C-n><C-w>j
+:tnoremap <A-k> <C-\><C-n><C-w>k
+:tnoremap <A-l> <C-\><C-n><C-w>l
+:nnoremap <A-h> <C-w>h
+:nnoremap <A-j> <C-w>j
+:nnoremap <A-k> <C-w>k
+:nnoremap <A-l> <C-w>l
+EOF

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ -s $(which dnf) ]]; then
+    sudo dnf install libtool
+elif [[ -s $(which apt) ]]; then
+    sudo apt install libtool libtool-bin
+else
+    echo "OS not supported."
+fi
