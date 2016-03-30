@@ -6,24 +6,30 @@ require libtool
 
 HERE=$(pwd)
 
+# Checkout neovim or pull the latest version
 mkdir -p $HOME/git
 cd $HOME/git
 if [[ ! -d neovim ]]; then
     git clone https://github.com/neovim/neovim.git
-fi
-if [[ ! -d neovim/build ]]; then
     cd neovim
-    make
+else
+    cd neovim
+    git pull
 fi
 
+# Build and install neovim
+make
+sudo make install
+
+# Account for the new config paths
 mkdir -p $HOME/.config/nvim
 
 cd $HERE
 require vimrc
-#cp $HERE/files/neovim.sh $HOME/.bashrc.d/neovim.sh
 cp -f $HOME/.vimrc $HOME/.config/nvim/init.vim
 cp -rf $HOME/.vim/* $HOME/.config/nvim/
 
+# Add some terminal-mode specific config that would break old vim
 cat >> $HOME/.config/nvim/init.vim <<EOF
 " Inserted especially for neovim by setup
 
