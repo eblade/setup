@@ -26,3 +26,16 @@ if [ ! -e "plugin/bufexplorer.vim" ]; then
 else
     echo "BufExplorer plugin already installed."
 fi
+
+
+if [ ! -e "plugin/fswitch.vim" ]; then
+    ZIPFILE="fswitch-0.9.3.zip"
+    wget --output-document="$ZIPFILE" "http://www.vim.org/scripts/download_script.php?src_id=14047"
+    unzip "$ZIPFILE"
+    cp -r vim-fswitch/* ./
+    vim -c "helptags doc/" -c "q"
+    rm -f $ZIPFILE
+    rm -r vim-fswitch
+else
+    echo "FSwitch plugin already installed."
+fi

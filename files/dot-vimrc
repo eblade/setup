@@ -34,3 +34,7 @@ set hlsearch
 
 " Unlight highlights with \n
 :nnoremap <Leader>n :nohl<CR>
+
+" FSwitch (between h amd cpp files)
+:nnoremap <Leader>h :FSHere<CR>
+:nnoremap <Leader>H :FSLeft<CR>
