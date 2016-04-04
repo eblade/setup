@@ -7,6 +7,7 @@ require libtool
 HERE=$(pwd)
 
 # Checkout neovim or pull the latest version
+COMPILE="yes"
 mkdir -p $HOME/git
 cd $HOME/git
 if [[ ! -d neovim ]]; then
@@ -14,12 +15,20 @@ if [[ ! -d neovim ]]; then
     cd neovim
 else
     cd neovim
-    git pull
+    RESPONSE=`git pull`
+    if [ "$RESPONSE" == "Already up-to-date." ]; then
+        echo "Neovim check-out up-to-date."
+        COMPILE="no"
+    fi
 fi
 
 # Build and install neovim
-make
-sudo make install
+if [ "$COMPILE" == "yes" ]; then
+    make
+    sudo make install
+else
+    echo "No need to re-compile."
+fi
 
 # Account for the new config paths
 mkdir -p $HOME/.config/nvim
