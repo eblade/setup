@@ -36,18 +36,6 @@ mkdir -p $HOME/.config/nvim
 cd $HERE
 require vimrc
 cp -f $HOME/.vimrc $HOME/.config/nvim/init.vim
-cp -rf $HOME/.vim/* $HOME/.config/nvim/
 
-# Add some terminal-mode specific config that would break old vim
-cat >> $HOME/.config/nvim/init.vim <<EOF
-" Inserted especially for neovim by setup
-
-:tnoremap <A-h> <C-\><C-n><C-w>h
-:tnoremap <A-j> <C-\><C-n><C-w>j
-:tnoremap <A-k> <C-\><C-n><C-w>k
-:tnoremap <A-l> <C-\><C-n><C-w>l
-:nnoremap <A-h> <C-w>h
-:nnoremap <A-j> <C-w>j
-:nnoremap <A-k> <C-w>k
-:nnoremap <A-l> <C-w>l
-EOF
+# Install plugins for via vundle neovim as well
+nvim +PluginInstall +qall

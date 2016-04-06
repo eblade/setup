@@ -3,39 +3,15 @@
 echo "Copying .vimrc file to $HOME."
 cp --force $PWD/files/dot-vimrc $HOME/.vimrc
 
-cd "$HOME/.vim"
-mkdir -p plugin
+mkdir -p "$HOME/.vim"
 
-if [ ! -e "plugin/taglist.vim" ]; then
-    ZIPFILE="taglist_46.zip"
-    wget --output-document="$ZIPFILE" "http://vim.sourceforge.net/scripts/download_script.php?src_id=19574"
-    unzip "$ZIPFILE"
-    vim -c "helptags doc/" -c "q"
-    rm -f $ZIPFILE
+VUNDLEPATH="$HOME/.vim/bundle/Vundle.vim"
+if [ ! -d "$VUNDLEPATH" ]; then
+    echo "Installing Vundle..."
+    git clone https://github.com/VundleVim/Vundle.vim.git "$VUNDLEPATH"
 else
-    echo "Taglist plugin already installed."
+    echo "Upgrading Vundle..."
+    cd "$VUNDLEPATH"
+    git pull
 fi
-
-
-if [ ! -e "plugin/bufexplorer.vim" ]; then
-    ZIPFILE="bufexplorer-7.4.6.zip"
-    wget --output-document="$ZIPFILE" "http://www.vim.org/scripts/download_script.php?src_id=22601"
-    unzip "$ZIPFILE"
-    vim -c "helptags doc/" -c "q"
-    rm -f $ZIPFILE
-else
-    echo "BufExplorer plugin already installed."
-fi
-
-
-if [ ! -e "plugin/fswitch.vim" ]; then
-    ZIPFILE="fswitch-0.9.3.zip"
-    wget --output-document="$ZIPFILE" "http://www.vim.org/scripts/download_script.php?src_id=14047"
-    unzip "$ZIPFILE"
-    cp -r vim-fswitch/* ./
-    vim -c "helptags doc/" -c "q"
-    rm -f $ZIPFILE
-    rm -r vim-fswitch
-else
-    echo "FSwitch plugin already installed."
-fi
+vim +PluginInstall +qall
