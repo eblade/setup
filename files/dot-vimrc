@@ -9,7 +9,6 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-scripts/bufexplorer.zip'
 Plugin 'vim-scripts/FSwitch'
 
 " All of your Plugins must be added before the following line
@@ -33,7 +32,7 @@ map <F2> :tab ball<CR>
 nmap <A-PageUp> :bprev<CR>
 nmap <A-PageDown> :bnext<CR>
 nmap <Leader>t :TlistToggle<CR>
-nmap <Leader><Return> :BufExplorer<CR>
+nmap <Leader><Return> :b 
 
 " Fair light colors
 autocmd colorscheme * highlight ColorColumn ctermbg=7 guibg='#cccccc'
