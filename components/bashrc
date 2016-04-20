@@ -15,3 +15,4 @@ EOF
 fi
 
 cp --force files/self.sh $HOME/.bashrc.d/self.sh
+cp --force files/mem.sh $HOME/.bashrc.d/mem.sh
