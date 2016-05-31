@@ -24,3 +24,8 @@ function _checkComplete {
 
 complete -F _checkComplete check
 
+publish() {
+    local FILENAME="$1"
+    curl -X POST --data-binary @"$FILENAME" "http://egneblad.se:8888/$FILENAME"
+}
+
