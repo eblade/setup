@@ -42,10 +42,9 @@ set modelines=1
 "set autochdir
 set hlsearch
 
-" Toggle cursor tracking with \c
-:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-:hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-:nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+" Toggle cursorline with \c
+:hi CursorLine ctermbg=lightgray
+:nnoremap <Leader>c :set cursorline!<CR>
 
 " Toggle word wrap with \w
 :nnoremap <Leader>w :set wrap!<CR>
@@ -57,6 +56,9 @@ set hlsearch
 :nnoremap <Leader>h :FSHere<CR>
 :nnoremap <Leader>H :FSLeft<CR>
 
+" zap push with \p (requires server to run)
+:nnoremap <Leader>p :!curl -s -X POST --data % http://localhost:8080/push<CR>
+
 " Neovim specific
 if has("nvim")
     :tnoremap <A-h> <C-\><C-n><C-w>h
@@ -67,4 +69,5 @@ if has("nvim")
     :nnoremap <A-j> <C-w>j
     :nnoremap <A-k> <C-w>k
     :nnoremap <A-l> <C-w>l
+    :autocmd TermOpen * set bufhidden=hide
 endif
