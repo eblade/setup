@@ -36,6 +36,9 @@ nmap <Leader><Return> :b
 
 " Fair light colors
 autocmd colorscheme * highlight ColorColumn ctermbg=7 guibg='#cccccc'
+autocmd colorscheme * highlight StatusLine guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+autocmd colorscheme * highlight StatusLineNC guibg=DarkGrey ctermfg=0 guifg=White ctermbg=15
+autocmd colorscheme * highlight VertSplit guibg=DarkGrey ctermfg=0 guifg=DarkGrey ctermbg=0
 colorscheme default
 
 set modelines=1
