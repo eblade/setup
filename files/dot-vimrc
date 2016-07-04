@@ -39,6 +39,9 @@ autocmd colorscheme * highlight ColorColumn ctermbg=7 guibg='#cccccc'
 autocmd colorscheme * highlight StatusLine guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 autocmd colorscheme * highlight StatusLineNC guibg=DarkGrey ctermfg=0 guifg=White ctermbg=15
 autocmd colorscheme * highlight VertSplit guibg=DarkGrey ctermfg=0 guifg=DarkGrey ctermbg=0
+autocmd colorscheme * highlight Search ctermbg=NONE ctermfg=NONE cterm=underline,bold
+autocmd colorscheme * highlight SpellBad ctermbg=NONE ctermfg=Red cterm=underline
+autocmd colorscheme * highlight MatchParen cterm=bold ctermfg=NONE ctermbg=NONE
 colorscheme default
 
 set modelines=1
