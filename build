@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+import tempfile
+import subprocess
+import shutil
+import tarfile
+
+from argparse import ArgumentParser
+from configparser import RawConfigParser
+
+if __name__ == '__main__':
+    ap = ArgumentParser()
+    ap.add_argument('package_dir', help='The root directory of the package')
+    args = ap.parse_args()
+    
+    package_dir = os.path.abspath(args.package_dir)
+    package_ini = os.path.join(package_dir, 'package.ini')
+
+    config = RawConfigParser()
+    config.optionxform = lambda option: option
+
+    config.add_section('Application')
+    config.set('Application', 'description', '')
+    config.set('Application', 'homepage', '')
+    config.set('Application', 'source homepage', '')
+   
+    config.add_section('Dependencies')
+
+    config.add_section('Scripts')
+    config.set('Scripts', 'build', 'build.sh')
+    config.set('Scripts', 'install', 'install.sh')
+    config.set('Scripts', 'uninstall', 'uninstall.sh')
+
+    config.read(package_ini)
+
+    title = config['Application']['title']
+    version = config['Application']['version']
+    description = config['Application']['description']
+
+    build_script = config['Scripts']['build']
+    install_script = config['Scripts']['install']
+    uninstall_script = config['Scripts']['uninstall']
+
+    tar_filepath = '%s-%s.tar.gz' % (title, version)
+
+    with tempfile.TemporaryDirectory() as build_root:
+        target = os.path.join(build_root, 'application')
+
+        env = dict(os.environ)
+        env.update({
+            'APPLICATION': title,
+            'VERSION': version,
+            'DESCRIPTION': description,
+            'SOURCE': package_dir,
+            'TARGET': target,
+        })
+
+        print('Running build script...')
+        subprocess.check_call(os.path.join(package_dir, build_script), cwd=build_root, env=env)
+
+        print('Copying installation scripts...')
+        shutil.copy(
+            os.path.join(package_dir, install_script),
+            os.path.join(build_root, install_script)
+        )
+
+        shutil.copy(
+            os.path.join(package_dir, uninstall_script),
+            os.path.join(build_root, uninstall_script)
+        )
+
+        print('Writing package.ini...')
+        with open(os.path.join(build_root, 'package.ini'), 'w') as f:
+            config.write(f)
+
+        print('Packing...')
+
+        tar = tarfile.open(name=tar_filepath, mode='w:gz')
+        tar.add(os.path.join(build_root, 'package.ini'), arcname='package.ini')
+        tar.add(os.path.join(build_root, install_script), arcname=install_script)
+        tar.add(os.path.join(build_root, uninstall_script), arcname=uninstall_script)
+        tar.add(target, arcname='application', recursive=True)
+        tar.close()
+
+        print('Created package %s' % tar_filepath)
