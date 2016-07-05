@@ -1,0 +1,53 @@
+Bash
+====
+
+Moving
+------
+
+beginning of line   C-a
+end of line         C-e
+forward char        C-f
+backward char       C-b
+forward word        M-f
+backward word       M-b
+clear screen        C-l
+
+History
+-------
+
+previous            C-p
+next                C-n
+beginning           M-<
+end                 M->
+reverse-search      C-r
+forward-search      C-s
+revert-line         M-r
+
+Modifying
+---------
+
+paste last arg      M-. (also !$)
+shell expand        M-C-e
+edit and exec       C-xC-e
+uppercase word      M-u
+lowercase word      M-l
+capitalize word     M-c
+insert-comment      M-#
+
+Copy-paste
+----------
+
+forward-kill-line   C-k
+backward-kill-line  C-u
+kill-word           M-d
+paste (yank)        C-y
+
+Complete
+--------
+
+complete-filename   C-/
+complete-username   C-~
+complete-variable   C-$
+complete-hostname   C-@
+complete-command    C-!
+glob-complete-word  M-g
