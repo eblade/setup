@@ -7,7 +7,7 @@ cp --force $PWD/files/markdownpreview.sh $PWD/files/listings-setup.tex $HOME/.ba
 if [[ -s $(which dnf) ]]; then
     sudo dnf install pandoc texlive-base texlive-xcolor
 elif [[ -s $(which apt) ]]; then
-    sudo apt-get install pandoc texlive-latex-base texlive-fonts-recommended texlive-latex-recommended latex-color --no-install-recommends
+    sudo apt-get install pandoc texlive-latex-base texlive-fonts-recommended texlive-latex-recommended latex-xcolor --no-install-recommends
 else
     echo "OS not supported."
 fi
