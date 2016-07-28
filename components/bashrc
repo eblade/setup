@@ -8,7 +8,7 @@ cat >> $HOME/.bashrc <<EOF
 
 # Source custom scripts
 export SETUP_PATH="$PWD"
-for f in \$HOME/.bashrc.d/*; do
+for f in \$HOME/.bashrc.d/*.sh; do
    . "\$f"
 done
 EOF
