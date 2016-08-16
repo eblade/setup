@@ -10,6 +10,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/FSwitch'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -42,6 +43,21 @@ autocmd colorscheme * highlight VertSplit guibg=DarkGrey ctermfg=0 guifg=DarkGre
 autocmd colorscheme * highlight Search ctermbg=NONE ctermfg=NONE cterm=underline,bold
 autocmd colorscheme * highlight SpellBad ctermbg=NONE ctermfg=Red cterm=underline
 autocmd colorscheme * highlight MatchParen cterm=bold ctermfg=NONE ctermbg=NONE
+
+" Indentation guides
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+autocmd colorscheme * highlight IndentGuidesOdd  ctermbg=black
+autocmd colorscheme * highlight IndentGuidesEven ctermbg=black
+
+" Tailing whitespaces
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+match ExtraWhitespace /\s\+$/
+
 colorscheme default
 
 set modelines=1
