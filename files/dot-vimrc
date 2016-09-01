@@ -33,7 +33,7 @@ map <F2> :tab ball<CR>
 nmap <A-PageUp> :bprev<CR>
 nmap <A-PageDown> :bnext<CR>
 nmap <Leader>t :TlistToggle<CR>
-nmap <Leader><Return> :b 
+nmap <Leader><Return> :b
 
 " Fair light colors
 autocmd colorscheme * highlight ColorColumn ctermbg=7 guibg='#cccccc'
@@ -44,6 +44,7 @@ autocmd colorscheme * highlight Search ctermbg=NONE ctermfg=NONE cterm=underline
 autocmd colorscheme * highlight SpellBad ctermbg=NONE ctermfg=Red cterm=underline
 autocmd colorscheme * highlight MatchParen cterm=bold ctermfg=NONE ctermbg=NONE
 autocmd colorscheme * highlight Visual cterm=none ctermfg=NONE ctermbg=Black
+autocmd colorscheme * highlight Todo cterm=BOLD ctermfg=Yellow ctermbg=NONE
 
 " Indentation guides
 let g:indent_guides_auto_colors = 0
@@ -51,7 +52,7 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
-autocmd colorscheme * highlight IndentGuidesOdd  ctermbg=black
+autocmd colorscheme * highlight IndentGuidesOdd ctermbg=black
 autocmd colorscheme * highlight IndentGuidesEven ctermbg=black
 
 " Tailing whitespaces
