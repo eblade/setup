@@ -16,3 +16,4 @@ fi
 
 cp --force files/self.sh $HOME/.bashrc.d/self.sh
 cp --force files/mem.sh $HOME/.bashrc.d/mem.sh
+cp --force files/bash-bindings.sh $HOME/.bashrc.d/bash-bindings.sh
