@@ -1,0 +1,18 @@
+#!/bin/bash
+
+require bashrc
+require git
+
+echo "Installing cryptmount..."
+HERE=$(pwd)
+
+mkdir -p $HOME/git
+cd $HOME/git
+if [[ ! -d cryptmount ]]; then
+    git clone https://github.com/eblade/cryptmount.git
+fi
+
+cd $HERE
+
+cp --force files/cryptmount.sh $HOME/.bashrc.d/cryptmount.sh
+
