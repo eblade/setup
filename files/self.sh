@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH="$SETUP_PATH:$HOME/bin:$PATH"
+PATH="$SETUP_PATH:$SETUP_PATH/tools:$HOME/bin:$PATH"
 
 function _profComplete {
     local cur=${COMP_WORDS[COMP_CWORD]}
@@ -26,6 +26,6 @@ complete -F _checkComplete check
 
 publish() {
     local FILENAME="$1"
-    curl -X POST --data-binary @"$FILENAME" "http://egneblad.se:8888/$FILENAME"
+    curl -X POST --data-binary @"$FILENAME" "https://egneblad.se/publish/$FILENAME"
 }
 
