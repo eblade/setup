@@ -44,7 +44,7 @@ autocmd colorscheme * highlight VertSplit guibg=DarkGrey ctermfg=0 guifg=DarkGre
 autocmd colorscheme * highlight Search ctermbg=NONE ctermfg=NONE cterm=underline,bold
 autocmd colorscheme * highlight SpellBad ctermbg=NONE ctermfg=Red cterm=underline
 autocmd colorscheme * highlight MatchParen cterm=bold ctermfg=NONE ctermbg=NONE
-autocmd colorscheme * highlight Visual cterm=none ctermfg=NONE ctermbg=Black
+autocmd colorscheme * highlight Visual cterm=standout ctermfg=NONE ctermbg=NONE
 autocmd colorscheme * highlight Todo cterm=BOLD ctermfg=Yellow ctermbg=NONE
 
 " Indentation guides
