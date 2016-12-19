@@ -3,6 +3,8 @@
 mkdir -p "$HOME/.bashrc.d"
 mkdir -p "$HOME/bin"
 
+# These do not exist in git bash shell
+touch "$HOME/.profile"
 touch "$HOME/.bashrc"
 
 if ! grep --quiet "Source custom scripts" "$HOME/.bashrc"; then
