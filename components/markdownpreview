@@ -2,7 +2,7 @@
 
 require bashrc
 
-cp --force $PWD/files/markdownpreview.sh $PWD/files/listings-setup.tex $HOME/.bashrc.d/
+ln -s --force $PWD/files/markdownpreview.sh $PWD/files/listings-setup.tex $HOME/.bashrc.d/
 
 if [[ -s $(which dnf) ]]; then
     sudo dnf install pandoc texlive-base texlive-xcolor
@@ -11,4 +11,3 @@ elif [[ -s $(which apt) ]]; then
 else
     echo "OS not supported."
 fi
-

@@ -1,6 +1,0 @@
-#!/bin/bash
-
-if [[ ! -d $HOME/.bazaar/plugins/ardendo ]]; then
-    mkdir -p $HOME/.bazaar/plugins
-    scp -r ardome@vmedev09.ardendo.se:.bazaar/plugins/ardendo $HOME/.bazaar/plugins/
-fi

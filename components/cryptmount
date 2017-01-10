@@ -3,9 +3,18 @@
 require bashrc
 require git
 
-echo "Installing cryptmount..."
 HERE=$(pwd)
 
+echo "Installing packages..."
+if [[ -s $(which dnf) ]]; then
+    sudo dnf install cryptsetup btrfs-tools
+elif [[ -s $(which apt) ]]; then
+    sudo apt-get install cryptsetup btrfs-tools
+else
+    echo "OS not supported."
+fi
+
+echo "Installing cryptmount..."
 mkdir -p $HOME/git
 cd $HOME/git
 if [[ ! -d cryptmount ]]; then
@@ -14,5 +23,4 @@ fi
 
 cd $HERE
 
-cp --force files/cryptmount.sh $HOME/.bashrc.d/cryptmount.sh
-
+ln -s --force files/cryptmount.sh $HOME/.bashrc.d/cryptmount.sh

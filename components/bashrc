@@ -18,6 +18,6 @@ done
 EOF
 fi
 
-cp --force files/self.sh "$HOME/.bashrc.d/self.sh"
-cp --force files/mem.sh "$HOME/.bashrc.d/mem.sh"
-cp --force files/bash-bindings.sh "$HOME/.bashrc.d/bash-bindings.sh"
+ln -s --force files/self.sh "$HOME/.bashrc.d/self.sh"
+ln -s --force files/mem.sh "$HOME/.bashrc.d/mem.sh"
+ln -s --force files/bash-bindings.sh "$HOME/.bashrc.d/bash-bindings.sh"

@@ -1,21 +1,18 @@
 #!/bin/bash
 
 require bashrc
+require git
 
-
-SVN="$HOME/svn"
-
-# Checking out ssh_nat from SVN
-mkdir -p $SVN
-cd "$SVN"
+# Checking out ssh_nat from saint
+cd "$HOME/git"
 
 if [[ -d ssh_nat ]]; then
     cd ssh_nat
-    svn up
+    git pull --rebase
 else
-    svn co svn://svn/ssh_nat/trunk ssh_nat
+    git clone saint:git/ssh_nat.git
 fi
 
 # Linking
-ln -fs "$SVN/ssh_nat/bin/ssh_nat" "$HOME/bin/ssh_nat"
-ln -fs "$SVN/ssh_nat/cfg" "$HOME/.ssh_nat"
+ln -fs "$HOME/git/ssh_nat/bin/ssh_nat" "$HOME/bin/ssh_nat"
+ln -fs "$HOME/git/ssh_nat/cfg" "$HOME/.ssh_nat"

@@ -11,4 +11,4 @@ git config --global alias.br branch
 git config --global alias.ci commit
 git config --global alias.st status
 
-cp files/git-bindings.sh "$HOME/.bashrc.d/"
+ln -s --force files/git-bindings.sh "$HOME/.bashrc.d/git-bindings.sh"

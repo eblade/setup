@@ -2,7 +2,16 @@
 
 require bashrc
 
+HERE="$(pwd)"
+
+if [[ ! $(which pip) ]]; then
+    echo "Installing pip..."
+    cd /tmp
+    wget https://bootstrap.pypa.io/get-pip.py
+    python get-pip.py
+fi
+
 echo "Upgrading pip..."
 pip install --upgrade pip
 
-cp --force files/python-aliases.sh $HOME/.bashrc.d/python-aliases.sh
+ln -s --force $HERE/files/python-aliases.sh $HOME/.bashrc.d/python-aliases.sh

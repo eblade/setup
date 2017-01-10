@@ -2,4 +2,4 @@
 
 require bashrc
 
-cp --force files/fedora.sh $HOME/.bashrc.d/fedora.sh
+ln -s --force files/fedora.sh $HOME/.bashrc.d/fedora.sh

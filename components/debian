@@ -2,4 +2,4 @@
 
 require bashrc
 
-cp --force files/debian.sh $HOME/.bashrc.d/debian.sh
+ln -s --force files/debian.sh $HOME/.bashrc.d/debian.sh

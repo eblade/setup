@@ -1,8 +1,13 @@
 #!/bin/bash
 
-echo "Copying .vimrc file to $HOME."
-cp --force $PWD/files/dot-vimrc $HOME/.vimrc
+require git
 
+HERE="$(pwd)"
+
+echo "Linking .vimrc file to $HOME..."
+ln -s --force $HERE/files/dot-vimrc $HOME/.vimrc
+
+echo "Setting up $HOME/.vim..."
 mkdir -p "$HOME/.vim"
 
 VUNDLEPATH="$HOME/.vim/bundle/Vundle.vim"

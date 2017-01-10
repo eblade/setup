@@ -2,5 +2,4 @@
 
 HERE=$(pwd)
 
-cd $HERE
 ln -s --force $HERE/files/sgp.sh $HOME/.bashrc.d/sgp.sh
