@@ -1,17 +1,36 @@
 #!/bin/bash
 
-function pass {
-    if [[ $(which xclip) == "0" ]]; then
-        PYTHONPATH="$HOME/git/supergenpass/core" python $HOME/git/supergenpass/core/sgp -q $1 | xclip -selection clipboard
-    else
-        PYTHONPATH="$HOME/git/supergenpass/core" python $HOME/git/supergenpass/core/sgp -q $1
-    fi
+function sgp {
+    read -srp 'Password: ' master
+    local domain=$(echo $1 | tr A-Z a-z)
+    local length=${2:-10}
+
+    hash=$master:$domain
+
+    i=0
+    while true
+    do
+        hash=$(echo -n "$hash" | openssl md5 -binary | base64 | tr +/= 98A)
+        i=$(($i + 1))
+        if [ $i -lt 10 ]
+        then
+            continue
+        fi
+        valid=$(echo "${hash:0:$length}" | egrep '^[a-z]' | egrep '.[A-Z]' | egrep '.[0-9]' )
+        if [ "$valid" != "" ]
+        then
+            break
+        fi
+    done
+    echo ${hash:0:$length}
 }
 
-function pass15 {
-    if [[ $(which xclip) == "0" ]]; then
-        PYTHONPATH="$HOME/git/supergenpass/core" python $HOME/git/supergenpass/core/sgp -q -l 15 $1 | xclip -selection clipboard
+function pass {
+    local domain="$1"
+    local length=${2:-10}
+    if [[ $(which xclip) ]]; then
+        sgp $domain $length | xclip -selection clipboard
     else
-        PYTHONPATH="$HOME/git/supergenpass/core" python $HOME/git/supergenpass/core/sgp -q -l 15 $1
+        sgp $domain $length
     fi
 }

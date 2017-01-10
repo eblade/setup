@@ -1,14 +1,6 @@
 #!/bin/bash
 
-require git
-
 HERE=$(pwd)
 
-mkdir -p $HOME/git
-cd $HOME/git
-if [[ ! -d supergenpass ]]; then
-    git clone https://github.com/timbertson/supergenpass.git
-fi
-
 cd $HERE
-cp --force $HERE/files/sgp.sh $HOME/.bashrc.d/sgp.sh
+ln -s --force $HERE/files/sgp.sh $HOME/.bashrc.d/sgp.sh
