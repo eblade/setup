@@ -1,5 +1,7 @@
 #!/bin/bash
 
+HERE="$(pwd)"
+
 require bashrc
 
 git config --global user.email "johan@egneblad.se"
@@ -11,4 +13,4 @@ git config --global alias.br branch
 git config --global alias.ci commit
 git config --global alias.st status
 
-ln -s --force files/git-bindings.sh "$HOME/.bashrc.d/git-bindings.sh"
+ln -s --force "$HERE/files/git-bindings.sh" "$HOME/.bashrc.d/git-bindings.sh"

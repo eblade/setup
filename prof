@@ -7,8 +7,10 @@ PROFILE=${1:-default}
 
 echo "Setting up profile $PROFILE..."
 
-for component in $(cat profiles/$PROFILE); do
-    ./require $component
+for COMPONENT in $(cat profiles/$PROFILE); do
+    COMPONENT="${COMPONENT//[$'\t\r\n ']}"
+    echo "Setting up component $COMPONENT..."
+    ./require $COMPONENT
 done
 
 echo "Done"
