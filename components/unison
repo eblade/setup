@@ -24,12 +24,15 @@ if [[ ! $(which unison) ]]; then
     make HOME=/usr/local UISTYLE=text
     sudo make HOME=/usr/local UISTYLE=text install
     echo "Installed unison."
+else
+    echo "Found $(unison -version) at $(which unison)."
 fi
 
 export HOME="$ACTUAL_HOME"
 
 echo "Linking profiles..."
 mkdir -p "$HOME/.unison"
+mkdir -p "$HOME/.unison-backup"
 
 cd "$HERE/files/unison"
 for PRFFILE in $(ls *.prf); do
