@@ -1,0 +1,5 @@
+#!/bin/bash
+
+RESOURCE_NAME='petrus'
+RESOURCE_PATH=/dev/disk/by-id/ata-Samsung_SSD_840_EVO_250GB_mSATA_S1KPNSAFB01153J-part1
+MOUNT_POINT=/run/media/$LOGNAME/$RESOURCE_NAME
