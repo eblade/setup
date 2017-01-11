@@ -3,7 +3,32 @@
 require bashrc
 
 HERE="$(pwd)"
+ACTUAL_HOME="$HOME"
 
+if [[ ! $(which unison) ]]; then
+    echo "Installing pre-requisites..."
+    if [[ -s $(which dnf) ]]; then
+        sudo dnf install ocaml-nox ctags
+    elif [[ -s $(which apt) ]]; then
+        sudo apt install ocaml-nox ctags
+    else
+        echo "OS not supported."
+        exit -1
+    fi
+    echo "Installing unison..."
+    local COMPILEDIR=$(mktemp -d)
+    cd $COMPILEDIR
+    wget "http://www.seas.upenn.edu/~bcpierce/unison//download/releases/unison-2.48.3/unison-2.48.3.tar.gz"
+    tar xvzf unison-2.48.3.tar.gz
+    cd unison-2.48.3
+    make HOME=/usr/local UISTYLE=text
+    sudo make HOME=/usr/local UISTYLE=text install
+    echo "Installed unison."
+fi
+
+export HOME="$ACTUAL_HOME"
+
+echo "Linking profiles..."
 mkdir -p "$HOME/.unison"
 
 cd "$HERE/files/unison"
