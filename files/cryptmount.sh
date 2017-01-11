@@ -8,5 +8,6 @@ function _cryptmountComplete {
     COMPREPLY=( $(compgen -W "$(ls $CRYPTMOUNT_PROFILES)" -- $cur) )
 }
 
+complete -F _cryptmountComplete csetup
 complete -F _cryptmountComplete cmount
 complete -F _cryptmountComplete cumount
