@@ -23,4 +23,4 @@ fi
 
 cd $HERE
 
-ln -s --force files/cryptmount.sh $HOME/.bashrc.d/cryptmount.sh
+ln -s --force "$HERE/files/cryptmount.sh" "$HOME/.bashrc.d/cryptmount.sh"
