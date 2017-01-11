@@ -1,0 +1,14 @@
+#!/bin/bash
+
+require bashrc
+
+HERE="$(pwd)"
+
+mkdir -p "$HOME/.unison"
+
+cd "$HERE/files/unison"
+for PRFFILE in $(ls *.prf); do
+    ln -sf "$HERE/files/unison/$PRFFILE" "$HOME/.unison/"
+done
+
+ln -s --force "$HERE/files/unison.sh" "$HOME/.bashrc.d/unison.sh"

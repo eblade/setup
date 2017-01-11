@@ -1,0 +1,58 @@
+# Unison preferences file
+
+# Original from
+# http://zythmer.acyclic.org/blog/2011/09/08/using-unison-synchronizer.html
+# edited to ignore *~,.*~,__pycache__
+# edited to support backups a la http://www.linuxjournal.com/article/7712
+
+# Roots of synchronization
+# Note the ssh URI has two slashes after the hostname
+root = /data/johan/
+root = ssh://odroid64//home/johan/data/
+
+# Paths to synchronize from the above root
+# Leave blank for all.
+path = unison
+
+# SSH args
+# I use ~/.ssh/config to set all my ssh options.
+# Add a "Host <server>" section to customize it.
+log = true
+logfile = /home/johan/.unison/unison.log
+sshcmd = /usr/bin/ssh
+sshargs = -i /home/johan/.ssh/id_rsa -F /home/johan/.ssh/config
+
+# By default, unison doesn't match mtimes, owner or group.
+# Use numeric IDs for real backups so everything is in sync.  Otherwise,
+# your etc/ copy will not reflect the actual permissions since Unison
+# changed them to match your system permissions.
+times = true
+owner = true
+group = true
+
+# set-uid, set-gid bits should also be synchronized
+perms = -1
+
+# This is not a backup so translate gid/uid via group-/usernames
+numericids = false
+
+ignore = Name {*~,.*~,__pycache__,.cache,*.pyc,build___*}
+
+# Confirm changes that aren't direct copies
+confirmbigdel = true
+confirmmerge = true
+
+auto = true
+# Terse and batch can be appended when running as script.
+# terse = true
+# batch = true
+
+#merge = Name * -> diff3 -m CURRENT1 CURRENTARCH CURRENT2 > NEW || echo "differences detected"
+
+backuplocation = central
+backupdir = /home/johan/.unison-backup
+backup = Name *
+backupprefix = $VERSION.
+backupsuffix =
+
+maxbackups = 10
