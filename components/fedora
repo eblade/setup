@@ -2,4 +2,5 @@
 
 require bashrc
 
-ln -s --force files/fedora.sh $HOME/.bashrc.d/fedora.sh
+HERE="$(pwd)"
+ln -s --force "$HERE/files/fedora.sh" "$HOME/.bashrc.d/fedora.sh"

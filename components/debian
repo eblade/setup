@@ -2,4 +2,5 @@
 
 require bashrc
 
-ln -s --force files/debian.sh $HOME/.bashrc.d/debian.sh
+HERE="$(pwd)"
+ln -s --force "$HERE/files/debian.sh" "$HOME/.bashrc.d/debian.sh"
