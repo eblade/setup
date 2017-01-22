@@ -8,7 +8,7 @@ ACTUAL_HOME="$HOME"
 if [[ ! $(which unison) ]]; then
     echo "Installing pre-requisites..."
     if [[ -s $(which dnf) ]]; then
-        sudo dnf install ocaml-nox ctags
+        sudo dnf install ocaml ctags redhat-rpm-config
     elif [[ -s $(which apt) ]]; then
         sudo apt install ocaml-nox ctags
     else
@@ -22,6 +22,7 @@ if [[ ! $(which unison) ]]; then
     tar xvzf unison-2.48.3.tar.gz
     cd unison-2.48.3
     make HOME=/usr/local UISTYLE=text
+    sudo mkdir -p /usr/local/bin
     sudo make HOME=/usr/local UISTYLE=text install
     echo "Installed unison."
 else
