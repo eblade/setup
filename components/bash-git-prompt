@@ -17,4 +17,4 @@ else
 fi
 
 cd "$HERE"
-ln -s --force files/bash-git-prompt.sh "$HOME/.bashrc.d/bash-git-prompt.sh"
+ln -s --force "$HERE/files/bash-git-prompt.sh" "$HOME/.bashrc.d/bash-git-prompt.sh"

@@ -12,9 +12,9 @@ root = ssh://therock//home/johan/data/unison/
 
 # Paths to synchronize from the above root
 # Leave blank for all.
-path = doc
-path = pic
-path = au
+path = Documents
+path = Pictures
+path = Music
 
 # SSH args
 # I use ~/.ssh/config to set all my ssh options.
