@@ -3,3 +3,9 @@
 HERE=$(pwd)
 
 ln -s --force $HERE/files/sgp.sh $HOME/.bashrc.d/sgp.sh
+
+cd $HERE/files
+
+gcc bishop.c -o bishop
+chmod +x bishop
+ln -s $HERE/files/bishop $HOME/bin/bishop
