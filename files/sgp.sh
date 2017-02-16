@@ -31,7 +31,7 @@ function sgp {
 function pass {
     local domain="$1"
     local length=${2:-10}
-    if [[ $(which xclip) ]]; then
+    if 2>/dev/null which xclip; then
         sgp $domain $length | xclip -selection clipboard
         echo "The password will be on the clipboard for 15 seconds..."
         sleep 15
