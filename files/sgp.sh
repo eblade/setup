@@ -8,7 +8,9 @@ function sgp {
     hash=$master:$domain
 
     >&2 echo ""
-    >&2 bishop $(echo $master | sha512sum | cut -f1 -d ' ')
+    if [ -e $HOME/bin/bishop ]; then
+        >&2 $HOME/bin/bishop $(echo $master | sha512sum | cut -f1 -d ' ')
+    fi
 
     i=0
     while true
@@ -31,7 +33,7 @@ function sgp {
 function pass {
     local domain="$1"
     local length=${2:-10}
-    if 2>/dev/null which xclip; then
+    if >/dev/null /usr/bin/which xclip; then
         sgp $domain $length | xclip -selection clipboard
         echo "The password will be on the clipboard for 15 seconds..."
         sleep 15
