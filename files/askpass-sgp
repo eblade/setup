@@ -6,6 +6,7 @@ function sgp {
     local length=${2:-10}
 
     hash=$master:$domain
+    >&2 echo ""
 
     i=0
     while true
