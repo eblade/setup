@@ -9,3 +9,5 @@ cd $HERE/files
 gcc bishop.c -o bishop
 chmod +x bishop
 ln -s --force $HERE/files/bishop $HOME/bin/bishop
+
+ln -s --force $HERE/files/askpass-sgp $HOME/bin/askpass-sgp
