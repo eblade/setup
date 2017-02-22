@@ -44,3 +44,4 @@ function pass {
 
 export SUDO_ASKPASS="$HOME/bin/askpass-sgp"
 alias pudo="sudo -A"
+alias please="sudo -A"
