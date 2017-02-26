@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# Content addressable system tool
+
+ROOT_FOLDER="$1"
+TODO="$2"
+
+
+split_hash() {
+    local HASH="$1"
+    local FOLDER=${HASH:0:2}
+    local SUBFOLDER=${HASH:2:2}
+    local FILENAME=${HASH:4}
+    echo "$FOLDER/$SUBFOLDER/$FILENAME"
+}
+
+get_hash_from_output() {
+    echo $1
+}
+
+
+if [ -z "$ROOT_FOLDER" ]; then echo "ROOT_FOLDER not given"; exit 1; fi
+if [ -z "$TODO" ]; then echo "COMMAND not given"; exit 1; fi
+
+
+if [ "$TODO" == "check" ]; then
+    HASH="$3"
+    if [ -z "$HASH" ]; then echo "HASH not given"; exit 1; fi
+    if [ ${#HASH} -lt 5 ]; then echo "HASH less than 5 characters long"; exit 1; fi
+    LOCAL_PATH=$(split_hash "$HASH")
+    if [ -e "$ROOT_FOLDER/$LOCAL_PATH" ]; then
+        echo "yes"
+        exit 1;
+    else
+        echo "no"
+        exit 1;
+    fi
+
+elif [ "$TODO" == "calc" ]; then
+    SOURCE="$3"
+    if [ -z "$SOURCE" ]; then echo "SOURCE not given"; exit 1; fi
+    MD5RESULT=$(md5sum "$ROOT_FOLDER/$SOURCE")
+    HASH=$(get_hash_from_output $MD5RESULT)
+    echo "$HASH"
+
+elif [ "$TODO" == "move" ]; then
+    SOURCE="$3"
+    if [ -z "$SOURCE" ]; then echo "SOURCE not given"; exit 1; fi
+    HASH=$(basename "$SOURCE")
+    if [ ${#HASH} -lt 5 ]; then echo "HASH (basename) less than 5 characters long"; exit 1; fi
+    LOCAL_PATH=$(split_hash "$HASH")
+    DESTINATION="$ROOT_FOLDER/$LOCAL_PATH"
+
+    mkdir -p $(dirname "$DESTINATION")
+    mv "$SOURCE" "$DESTANATION"
+fi
