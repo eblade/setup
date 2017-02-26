@@ -29,10 +29,8 @@ if [ "$TODO" == "check" ]; then
     if [ ${#HASH} -lt 5 ]; then echo "HASH less than 5 characters long"; exit 1; fi
     LOCAL_PATH=$(split_hash "$HASH")
     if [ -e "$ROOT_FOLDER/$LOCAL_PATH" ]; then
-        echo "yes"
-        exit 1;
+        exit 0;
     else
-        echo "no"
         exit 1;
     fi
 
@@ -52,5 +50,5 @@ elif [ "$TODO" == "move" ]; then
     DESTINATION="$ROOT_FOLDER/$LOCAL_PATH"
 
     mkdir -p $(dirname "$DESTINATION")
-    mv "$SOURCE" "$DESTANATION"
+    mv "$SOURCE" "$DESTINATION"
 fi
