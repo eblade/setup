@@ -13,6 +13,8 @@ Plugin 'vim-scripts/FSwitch'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'rust-lang/rust.vim'
 Plugin 'eblade/blueprint.vim'
+Plugin 'elzr/vim-json'
+Plugin 'ivanov/vim-ipython'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
