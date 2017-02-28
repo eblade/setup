@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo dnf install git vim bzr xclip python-lxml python-gevent pytz gcc libgcc ctags
+sudo dnf install git vim bzr xclip python-lxml python-gevent pytz gcc libgcc ctags automake gcc-c++ kernel-devel cmake python-devel python3-devel

@@ -20,3 +20,16 @@ else
     git pull
 fi
 vim +PluginInstall +qall
+
+# Set up and compile YouCompleteMe
+
+ARGS=" --clang-completer"
+
+if >/dev/null /usr/bin/which rustc; then
+    ARGS="$ARGS --racer-completer"
+fi
+
+cd ~/.vim/bundle/YouCompleteMe
+./install.py $ARGS
+
+echo "Compiled YouCompleteMe."
