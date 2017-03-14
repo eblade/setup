@@ -26,4 +26,10 @@ function sgp {
     echo ${hash:0:$length}
 }
 
-sgp $(hostname --short)
+if [ -e "$HOME/.sgpargs" ]; then
+    SGPARGS=$(cat "$HOME/.sgpargs")
+else
+    SGPARGS=$(hostname --short)
+fi
+
+sgp $SGPARGS
