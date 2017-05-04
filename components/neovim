@@ -37,5 +37,13 @@ cd $HERE
 require vimrc
 cp -f $HOME/.vimrc $HOME/.config/nvim/init.vim
 
-# Install plugins for via vundle neovim as well
+# Install the neovim python package
+if [[ -s $(which pip) ]]; then
+    echo "Installing/upgrading the neovim python package..."
+    pip install --user --upgrade neovim
+else
+    echo "Warning: Could not install the neovim pip package because you don't have pip!"
+fi
+
+# Install plugins neovim for via vundle neovim as well
 nvim +PluginInstall +qall
