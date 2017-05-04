@@ -15,6 +15,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'eblade/blueprint.vim'
 Plugin 'elzr/vim-json'
 Plugin 'valloric/YouCompleteMe'
+Plugin 'jalvesaq/Nvim-R'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -31,7 +32,7 @@ set statusline=%<\ %n\ %f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
 
 " Shortcut for splitting buffers into tabs
-map <F2> :tab ball<CR>
+"map <F2> :tab ball<CR>
 
 " Shortcuts for navigating between buffers
 nmap <A-PageUp> :bprev<CR>
@@ -70,9 +71,9 @@ set modelines=1
 "set autochdir
 set hlsearch
 
-" Toggle cursorline with \c
+" Toggle cursorline with \cl
 :hi CursorLine ctermbg=lightgray
-:nnoremap <Leader>c :set cursorline!<CR>
+:nnoremap <Leader>cl :set cursorline!<CR>
 
 " Toggle word wrap with \w
 :nnoremap <Leader>w :set wrap!<CR>
@@ -99,3 +100,33 @@ if has("nvim")
     :nnoremap <A-l> <C-w>l
     :autocmd TermOpen * set bufhidden=hide
 endif
+
+
+" To open R in terminal rather than RGui (only necessary on OS X)
+" let vimrplugin_applescript = 0
+" let vimrplugin_screenplugin = 0
+" For tmux support
+let g:ScreenImpl = 'Tmux'
+let vimrplugin_screenvsplit = 1 " For vertical tmux split
+let g:ScreenShellInitialFocus = 'shell'
+" instruct to use your own .screenrc file
+let g:vimrplugin_noscreenrc = 1
+" For integration of r-plugin with screen.vim
+let g:vimrplugin_screenplugin = 1
+" Don't use conque shell if installed
+let vimrplugin_conqueplugin = 0
+" map the letter 'r' to send visually selected lines to R
+let g:vimrplugin_map_r = 1
+" see R documentation in a Vim buffer
+let vimrplugin_vimpager = "no"
+"set expandtab
+set shiftwidth=4
+set tabstop=8
+" start R with F2 key
+map <F2> <Plug>RStart
+imap <F2> <Plug>RStart
+vmap <F2> <Plug>RStart
+" send selection to R with space bar
+vmap <Space> <Plug>RDSendSelection
+" send line to R with space bar
+nmap <Space> <Plug>RDSendLine

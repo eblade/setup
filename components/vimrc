@@ -29,6 +29,10 @@ if >/dev/null /usr/bin/which rustc; then
     ARGS="$ARGS --racer-completer"
 fi
 
+if >/dev/null /usr/bin/which mono; then
+    ARGS="$ARGS --omnisharp-completer"
+fi
+
 cd ~/.vim/bundle/YouCompleteMe
 ./install.py $ARGS
 
