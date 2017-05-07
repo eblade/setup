@@ -1,0 +1,5 @@
+#!/bin/bash
+
+RESOURCE_NAME='tengil2'
+RESOURCE_PATH=/dev/disk/by-id/ata-WDC_WD30EFRX-68AX9N0_WD-WCC1T0228249-part1
+MOUNT_POINT=/run/media/$LOGNAME/$RESOURCE_NAME
