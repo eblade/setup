@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Copying .minttycr file to $HOME."
+cp --force $PWD/files/dot-minttyrc $HOME/.minttyrc
