@@ -42,6 +42,7 @@ nmap <Leader><Return> :b
 
 " Fair light colors
 autocmd colorscheme * highlight ColorColumn ctermbg=7 guibg='#cccccc'
+autocmd colorscheme * highlight CursorLine ctermbg=0 ctermfg=black cterm=NONE,underline,bold
 autocmd colorscheme * highlight StatusLine guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 autocmd colorscheme * highlight StatusLineNC guibg=DarkGrey ctermfg=0 guifg=White ctermbg=15
 autocmd colorscheme * highlight VertSplit guibg=DarkGrey ctermfg=0 guifg=DarkGrey ctermbg=0
@@ -50,6 +51,7 @@ autocmd colorscheme * highlight SpellBad ctermbg=NONE ctermfg=Red cterm=underlin
 autocmd colorscheme * highlight MatchParen cterm=bold ctermfg=NONE ctermbg=NONE
 autocmd colorscheme * highlight Visual cterm=standout ctermfg=NONE ctermbg=NONE
 autocmd colorscheme * highlight Todo cterm=BOLD ctermfg=Yellow ctermbg=NONE
+autocmd colorscheme * highlight TabLineFill term=bold cterm=bold ctermbg=0
 
 " Indentation guides
 let g:indent_guides_auto_colors = 0
@@ -130,3 +132,4 @@ vmap <F2> <Plug>RStart
 vmap <Space> <Plug>RDSendSelection
 " send line to R with space bar
 nmap <Space> <Plug>RDSendLine
+let g:R_assign = 0
