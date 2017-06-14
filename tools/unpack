@@ -1,0 +1,44 @@
+#!/bin/bash
+
+OPENXMLFILE="$1"
+WORKING_FOLDER="$(pwd)"
+
+unpack() {
+    local SOURCE="$1"
+    local TARGET="$(basename "$SOURCE").unpacked"
+    local WHEREIWERE="$(pwd)"
+    cd $(dirname "$SOURCE")
+    echo "Extracting '$SOURCE'..."
+
+    if [ -e "$TARGET" ]; then
+        rm -r "$TARGET"
+    fi
+
+    mkdir "$TARGET"
+    cd "$TARGET"
+
+    unzip -x -q "../$(basename "$SOURCE")"
+
+    for XLSX in $(find -name \*.xlsx); do
+        unpack "$XLSX"
+    done;
+
+    cd "$WHEREIWERE"
+}
+
+unpack "$OPENXMLFILE"
+
+echo "Running xmllint..."
+
+cd "$WORKING_FOLDER/$(basename "$OPENXMLFILE").unpacked"
+
+COUNTER=0
+for XML in $(find -name \*.xml*); do
+    mv "$XML" "$XML.tmp"
+    cat "$XML.tmp" | xmllint --format - > "$XML"
+    rm "$XML.tmp"
+    let COUNTER++
+done
+
+echo "Linted $COUNTER files."
+echo "Done."
