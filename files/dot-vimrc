@@ -16,10 +16,13 @@ Plugin 'eblade/blueprint.vim'
 Plugin 'elzr/vim-json'
 Plugin 'valloric/YouCompleteMe'
 Plugin 'jalvesaq/Nvim-R'
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
 " Obviously
 syntax on
@@ -59,8 +62,8 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
-autocmd colorscheme * highlight IndentGuidesOdd ctermbg=black
-autocmd colorscheme * highlight IndentGuidesEven ctermbg=black
+autocmd colorscheme * highlight IndentGuidesOdd ctermbg=lightgray
+autocmd colorscheme * highlight IndentGuidesEven ctermbg=lightgray
 
 " Tailing whitespaces
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
@@ -72,6 +75,7 @@ colorscheme default
 set modelines=1
 "set autochdir
 set hlsearch
+set incsearch
 
 " Toggle cursorline with \cl
 :hi CursorLine ctermbg=lightgray
@@ -87,8 +91,11 @@ set hlsearch
 :nnoremap <Leader>h :FSHere<CR>
 :nnoremap <Leader>H :FSLeft<CR>
 
-" zap push with \p (requires server to run)
-:nnoremap <Leader>p :!curl -s -X POST --data % http://localhost:8080/push<CR>
+" Quicker window switchers
+:nnoremap <A-h> <C-w>h
+:nnoremap <A-j> <C-w>j
+:nnoremap <A-k> <C-w>k
+:nnoremap <A-l> <C-w>l
 
 " Neovim specific
 if has("nvim")
@@ -96,10 +103,6 @@ if has("nvim")
     :tnoremap <A-j> <C-\><C-n><C-w>j
     :tnoremap <A-k> <C-\><C-n><C-w>k
     :tnoremap <A-l> <C-\><C-n><C-w>l
-    :nnoremap <A-h> <C-w>h
-    :nnoremap <A-j> <C-w>j
-    :nnoremap <A-k> <C-w>k
-    :nnoremap <A-l> <C-w>l
     :autocmd TermOpen * set bufhidden=hide
 endif
 
