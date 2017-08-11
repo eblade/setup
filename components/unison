@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 require bashrc
 
@@ -8,13 +8,24 @@ ACTUAL_HOME="$HOME"
 if [[ ! $(which unison) ]]; then
     echo "Installing pre-requisites..."
     if [[ -s $(which dnf) ]]; then
-        sudo dnf install ocaml ctags redhat-rpm-config
+        sudo dnf install ctags redhat-rpm-config # ocaml
     elif [[ -s $(which apt) ]]; then
-        sudo apt install ocaml-nox ctags
+        sudo apt install ctags # ocaml-nox
     else
         echo "OS not supported."
         exit -1
     fi
+    echo "Installing ocamlc"
+    local COMPILEDIR=$(mktemp -d)
+    cd $COMPILEDIR
+    wget "http://caml.inria.fr/pub/distrib/ocaml-4.02/ocaml-4.02.3.tar.gz"
+    tar xzf ocaml-4.02.3.tar.gz
+    cd ocaml-4.02.3
+    ./configure
+    make world.opt
+    sudo make install
+    echo "Installed ocaml"
+
     echo "Installing unison..."
     local COMPILEDIR=$(mktemp -d)
     cd $COMPILEDIR
