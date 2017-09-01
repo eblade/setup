@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Content addressable system tool
 
@@ -22,7 +22,19 @@ get_hash_from_output() {
 if [ -z "$ROOT_FOLDER" ]; then echo "ROOT_FOLDER not given"; exit 1; fi
 if [ -z "$TODO" ]; then echo "COMMAND not given"; exit 1; fi
 
+DB_PATH="$ROOT_FOLDER/db"
 
+db() {
+    sqlite3 "$DB_PATH" "$1"
+}
+
+# Create root folder and database
+if [ "$TODO" == "init" ]; then
+    mkdir -p "$ROOT_FOLDER/objects"
+    db "CREATE TABLE objects(key TEXT UNIQUE, hash TEXT)"
+fi
+
+# Check if a given hash is checked in
 if [ "$TODO" == "check" ]; then
     HASH="$3"
     if [ -z "$HASH" ]; then echo "HASH not given"; exit 1; fi
@@ -34,6 +46,7 @@ if [ "$TODO" == "check" ]; then
         exit 1;
     fi
 
+# Calculate the MD5 sum of a file
 elif [ "$TODO" == "calc" ]; then
     SOURCE="$3"
     if [ -z "$SOURCE" ]; then echo "SOURCE not given"; exit 1; fi
@@ -41,14 +54,47 @@ elif [ "$TODO" == "calc" ]; then
     HASH=$(get_hash_from_output $MD5RESULT)
     echo "$HASH"
 
-elif [ "$TODO" == "move" ]; then
+# Check in a file
+# checkin <path> [<key>]
+elif [ "$TODO" == "checkin" ]; then
     SOURCE="$3"
+    KEY="$4"
     if [ -z "$SOURCE" ]; then echo "SOURCE not given"; exit 1; fi
-    HASH=$(basename "$SOURCE")
-    if [ ${#HASH} -lt 5 ]; then echo "HASH (basename) less than 5 characters long"; exit 1; fi
+    MD5RESULT=$(md5sum "$SOURCE")
+    HASH=$(get_hash_from_output $MD5RESULT)
     LOCAL_PATH=$(split_hash "$HASH")
     DESTINATION="$ROOT_FOLDER/$LOCAL_PATH"
 
     mkdir -p $(dirname "$DESTINATION")
-    mv "$SOURCE" "$DESTINATION"
+    cp "$SOURCE" "$DESTINATION"
+
+    if [ -z "$KEY" ]; then
+        db "INSERT INTO objects VALUES (NULL, '$HASH')"
+    else
+        db "INSERT INTO objects VALUES ('$KEY', '$HASH')"
+    fi
+    echo "$HASH"
+
+# Check out a file
+elif [ "$TODO" == "checkout" ]; then
+    SOURCE="$3"
+    KEY="$4"
+    if [ -z "$SOURCE" ]; then echo "SOURCE not given"; exit 1; fi
+    MD5RESULT=$(md5sum "$SOURCE")
+    HASH=$(get_hash_from_output $MD5RESULT)
+    LOCAL_PATH=$(split_hash "$HASH")
+    DESTINATION="$ROOT_FOLDER/$LOCAL_PATH"
+
+    mkdir -p $(dirname "$DESTINATION")
+    cp "$SOURCE" "$DESTINATION"
+
+    if [ -z "$KEY" ]; then
+        db "INSERT INTO objects VALUES (NULL, '$HASH')"
+    else
+        db "INSERT INTO objects VALUES ('$KEY', '$HASH')"
+    fi
+
+# List all checked-in files with keys
+elif [ "$TODO" == "ls" ]; then
+    db "SELECT key, hash FROM objects"
 fi
