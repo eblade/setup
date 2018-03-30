@@ -1,11 +1,13 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
 require bashrc
 
 HERE="$(pwd)"
 ACTUAL_HOME="$HOME"
 
-if [[ ! $(which unison) ]]; then
+echo "$PATH"
+
+if ! which unison; then
     echo "Installing pre-requisites..."
     if [[ -s $(which dnf) ]]; then
         sudo dnf install ctags redhat-rpm-config # ocaml
@@ -15,16 +17,18 @@ if [[ ! $(which unison) ]]; then
         echo "OS not supported."
         exit -1
     fi
-    echo "Installing ocamlc"
-    local COMPILEDIR=$(mktemp -d)
-    cd $COMPILEDIR
-    wget "http://caml.inria.fr/pub/distrib/ocaml-4.02/ocaml-4.02.3.tar.gz"
-    tar xzf ocaml-4.02.3.tar.gz
-    cd ocaml-4.02.3
-    ./configure
-    make world.opt
-    sudo make install
-    echo "Installed ocaml"
+    if ! which ocamlc; then
+        echo "Installing ocamlc"
+        local COMPILEDIR=$(mktemp -d)
+        cd $COMPILEDIR
+        wget "http://caml.inria.fr/pub/distrib/ocaml-4.02/ocaml-4.02.3.tar.gz"
+        tar xzf ocaml-4.02.3.tar.gz
+        cd ocaml-4.02.3
+        ./configure
+        make -j 4 world.opt
+        sudo make install
+        echo "Installed ocaml"
+    fi
 
     echo "Installing unison..."
     local COMPILEDIR=$(mktemp -d)
@@ -32,7 +36,7 @@ if [[ ! $(which unison) ]]; then
     wget "http://www.seas.upenn.edu/~bcpierce/unison//download/releases/unison-2.48.3/unison-2.48.3.tar.gz"
     tar xvzf unison-2.48.3.tar.gz
     cd unison-2.48.3
-    make HOME=/usr/local UISTYLE=text
+    make HOME=/usr/local UISTYLE=text OCAMLC=$(which ocamlc) OCAMLCOPT=$(which ocamlcopt)
     sudo mkdir -p /usr/local/bin
     sudo make HOME=/usr/local UISTYLE=text install
     echo "Installed unison."
