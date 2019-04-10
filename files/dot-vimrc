@@ -18,6 +18,7 @@ Plugin 'valloric/YouCompleteMe'
 Plugin 'jalvesaq/Nvim-R'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'petRUShka/vim-opencl'
+Plugin 'mattn/webapi-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -29,7 +30,7 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/
 syntax on
 
 " The only correct indention settings
-set ts=4 sw=4 et ai
+set ts=4 sw=4 et ai bs=2
 
 " Status line
 set statusline=%<\ %n\ %f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
@@ -43,6 +44,9 @@ nmap <A-PageUp> :bprev<CR>
 nmap <A-PageDown> :bnext<CR>
 nmap <Leader>t :TlistToggle<CR>
 nmap <Leader><Return> :b
+
+" YCM Shortcuts
+nmap <Leader>g :YcmCompleter GoToDefinition<CR>
 
 " Fair light colors
 autocmd colorscheme * highlight ColorColumn ctermbg=7 guibg='#cccccc'
@@ -63,8 +67,8 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
-autocmd colorscheme * highlight IndentGuidesOdd ctermbg=lightgray
-autocmd colorscheme * highlight IndentGuidesEven ctermbg=lightgray
+autocmd colorscheme * highlight IndentGuidesOdd ctermbg=DarkGrey
+autocmd colorscheme * highlight IndentGuidesEven ctermbg=DarkGrey
 
 " Tailing whitespaces
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
@@ -125,9 +129,10 @@ let vimrplugin_conqueplugin = 0
 let g:vimrplugin_map_r = 1
 " see R documentation in a Vim buffer
 let vimrplugin_vimpager = "no"
-"set expandtab
+set expandtab
 set shiftwidth=4
-set tabstop=8
+set tabstop=4
+set autoindent
 " start R with F2 key
 map <F2> <Plug>RStart
 imap <F2> <Plug>RStart
