@@ -54,4 +54,4 @@ complete -F _pazComplete paz
 export SUDO_ASKPASS="$HOME/bin/askpass-sgp"
 alias pudo="sudo -A"
 alias please="sudo -A"
-alias paz="python3 ~/git/paz/paz.py -cw"
+alias paz="python3.7 ~/git/paz/paz.py -cwb"
