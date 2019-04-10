@@ -13,5 +13,17 @@ if >/dev/null /usr/bin/which gcc; then
     ln -s --force $HERE/files/bishop $HOME/bin/bishop
 fi
 
+echo "Installing paz..."
+mkdir -p $HOME/git
+cd $HOME/git
+if [[ ! -d paz ]]; then
+    git clone https://github.com/eblade/paz.git
+else
+    cd paz
+    git pull
+fi
+
+cd $HERE
+
 echo "Installing askpass-sgp..."
 ln -s --force $HERE/files/askpass-sgp $HOME/bin/askpass-sgp
