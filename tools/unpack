@@ -28,9 +28,11 @@ unpack() {
 
 unpack "$OPENXMLFILE"
 
+
 echo "Running xmllint..."
 
 cd "$WORKING_FOLDER/$(basename "$OPENXMLFILE").unpacked"
+chmod -R g+rw,u+rw,a+r *
 
 COUNTER=0
 for XML in $(find -name \*.xml*); do
