@@ -16,7 +16,6 @@ Plugin 'eblade/blueprint.vim'
 Plugin 'elzr/vim-json'
 Plugin 'valloric/YouCompleteMe'
 Plugin 'jalvesaq/Nvim-R'
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'petRUShka/vim-opencl'
 Plugin 'mattn/webapi-vim'
 
@@ -25,6 +24,9 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:OmniSharp_server_path = '/home/johan.egneblad/opt/omnisharp/omnisharp/OmniSharp.exe'
+let g:ycm_filepath_completion_use_working_dir = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
 
 " Obviously
 syntax on
@@ -44,6 +46,7 @@ nmap <A-PageUp> :bprev<CR>
 nmap <A-PageDown> :bnext<CR>
 nmap <Leader>t :TlistToggle<CR>
 nmap <Leader><Return> :b
+nmap <F12> :YcmCompleter GoTo<CR>
 
 " YCM Shortcuts
 nmap <Leader>g :YcmCompleter GoToDefinition<CR>
@@ -142,3 +145,7 @@ vmap <Space> <Plug>RDSendSelection
 " send line to R with space bar
 nmap <Space> <Plug>RDSendLine
 let g:R_assign = 0
+
+" ROPE
+let ropevim_vim_completion=1
+let ropevim_extended_complete=1
