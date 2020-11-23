@@ -1,6 +1,10 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+if &shell =~# 'fish$'
+    set shell=sh
+endif
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -14,19 +18,24 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'rust-lang/rust.vim'
 Plugin 'eblade/blueprint.vim'
 Plugin 'elzr/vim-json'
-Plugin 'valloric/YouCompleteMe'
-Plugin 'jalvesaq/Nvim-R'
+"Plugin 'valloric/YouCompleteMe'
+"Plugin 'jalvesaq/Nvim-R'
 Plugin 'petRUShka/vim-opencl'
 Plugin 'mattn/webapi-vim'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'mattn/vim-lsp-settings'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'dag/vim-fish'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:OmniSharp_server_path = '/home/johan.egneblad/opt/omnisharp/omnisharp/OmniSharp.exe'
+let g:OmniSharp_server_path = '~/opt/omnisharp/omnisharp/OmniSharp.exe'
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
 " Obviously
 syntax on
@@ -46,7 +55,8 @@ nmap <A-PageUp> :bprev<CR>
 nmap <A-PageDown> :bnext<CR>
 nmap <Leader>t :TlistToggle<CR>
 nmap <Leader><Return> :b
-nmap <F12> :YcmCompleter GoTo<CR>
+nmap <F12> :LspDefinition<CR>
+nmap <CR> :LspCodeAction<CR>
 
 " YCM Shortcuts
 nmap <Leader>g :YcmCompleter GoToDefinition<CR>
