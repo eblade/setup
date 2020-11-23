@@ -29,7 +29,7 @@ if >/dev/null /usr/bin/which rustc; then
     ARGS="$ARGS --racer-completer"
 fi
 
-if >/dev/null /usr/bin/which mono; then
+if >/dev/null /usr/bin/which dotnet; then
     ARGS="$ARGS --omnisharp-completer"
 fi
 
