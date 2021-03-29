@@ -7,6 +7,8 @@ require bashrc
 git config --global user.email "johan@egneblad.se"
 git config --global user.name "Johan Egneblad"
 git config --global push.default simple
+git config --global pull.rebase false
+git config --global core.autocrlf input
 
 git config --global alias.co checkout
 git config --global alias.br branch
@@ -14,5 +16,8 @@ git config --global alias.ci "commit -m"
 git config --global alias.st status
 git config --global alias.sync "!git pull --rebase && git push"
 git config --global alias.pr "pull --rebase"
+git config --global alias.au "add -u"
+git config --global alias.lo "log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short"
+git config --global alias.lof = "log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short --name-status"
 
 ln -s --force "$HERE/files/git-bindings.sh" "$HOME/.bashrc.d/git-bindings.sh"
