@@ -6,4 +6,10 @@ require bashrc
 
 sudo dnf install fish
 
-ln -s --force "$HERE/files/config.fish" "$HOME/.config/fish/config.fish"
+FISH_CONFIG_DIR="$HOME/.config/fish"
+mkdir -p "$FISH_CONFIG_DIR/conf.d"
+mkdir -p "$FISH_CONFIG_DIR/functions"
+ln -s --force "$HERE/files/config.fish" "$FISH_CONFIG_DIR/"
+ln -s --force "$HERE/files/fish_variables" "$FISH_CONFIG_DIR/"
+ln -s --force "$HERE/files/fish_command_timer.fish" "$FISH_CONFIG_DIR/conf.d/"
+ln -s --force "$HERE/files/fish_prompt.fish" "$FISH_CONFIG_DIR/functions/"
