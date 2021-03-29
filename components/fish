@@ -1,0 +1,9 @@
+#!/bin/bash
+
+HERE="$(pwd)"
+
+require bashrc
+
+sudo dnf install fish
+
+ln -s --force "$HERE/files/config.fish" "$HOME/.config/fish/config.fish"
