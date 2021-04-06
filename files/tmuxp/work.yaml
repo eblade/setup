@@ -1,0 +1,18 @@
+session_name: work
+windows:
+  - window_name: vpn
+  - window_name: machines
+    shell_command_before:
+      - cd ~/git/Machines
+  - window_name: mc
+    shell_command_before:
+      - cd ~/git/MachineCommander
+  - window_name: mc-code
+    shell_command_before:
+      - cd ~/git/MachineCommander
+  - window_name: dst
+    shell_command_before:
+      - cd ~/git/python-dst
+  - window_name: prod
+    shell_command_before:
+      - cd ~/git/MachinesProduction

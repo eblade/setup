@@ -1,0 +1,12 @@
+#!/bin/bash
+
+HERE="$(pwd)"
+
+require bashrc
+
+pip install --user tmuxp
+
+mkdir -p "~/.tmuxp"
+
+ln -s --force "$HERE/files/dottmux.conf" "$HOME/.tmux.conf"
+ln -s --force "$HERE/files/tmuxp/*" "$HOME/.tmuxp/"
