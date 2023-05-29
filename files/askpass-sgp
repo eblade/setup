@@ -17,7 +17,7 @@ function sgp {
         then
             continue
         fi
-        valid=$(echo "${hash:0:$length}" | egrep '^[a-z]' | egrep '.[A-Z]' | egrep '.[0-9]' )
+        valid=$(echo "${hash:0:$length}" | grep -E '^[a-z]' | grep -E '.[A-Z]' | grep -E '.[0-9]' )
         if [ "$valid" != "" ]
         then
             break
